@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    container_name: php-apache
+    image: php:8.0-apache
+    command: php App/CodeChallengeApp.php
+    volumes:
+      - .:/app
+    working_dir: /app
+  test:
+    build: .
+    container_name: php-apache
+    image: php:8.0-apache
+    command: phpunit --configuration phpunit.xml --testsuite Unit
+    volumes:
+      - .:/app
+    working_dir: /app
